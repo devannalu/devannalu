@@ -1,40 +1,50 @@
-# 👩🏻‍💻 Anna Luiza
+<h1 align="center">Anna Luiza</h1>
 
-**`Backend Software Engineer`**
+<p align="center">
+  <strong>Backend Software Engineer</strong>
+</p>
 
-Backend developer em evolução, criando soluções com Java e Spring Boot enquanto aprofundo conhecimentos em APIs REST, arquitetura de software e boas práticas de desenvolvimento.
+<p align="center">
+  Desenvolvedora backend construindo APIs REST com Java e Spring Boot. 
+  Foco em arquitetura limpa, código testável e boas práticas de design de APIs.
+</p>
 
----
+<p align="center">
+  <a href="https://www.linkedin.com/in/devannalu/" target="_blank">
+    <img src="https://img.shields.io/badge/linkedin-1f1d2e?style=for-the-badge&logo=linkedin&logoColor=ebbcba"/>
+  </a>
 
-### Tecnologias
+  <a href="https://www.instagram.com/dev.annalu/" target="_blank">
+    <img src="https://img.shields.io/badge/instagram-1f1d2e?style=for-the-badge&logo=instagram&logoColor=ebbcba"/>
+  </a>
 
-<img align="left" alt="Java" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"/>
-<img align="left" alt="Spring Boot" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"/>
-<img align="left" alt="SQL" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg"/>
-<img align="left" alt="Git" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/>
-<img align="left" alt="GitHub" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"/>
-<img align="left" alt="Docker" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"/>
-<img align="left" alt="AWS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"/>
-<img align="left" alt="Maven" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg"/>
-<img align="left" alt="Swagger" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg"/>
-<img align="left" alt="PostgreSQL" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"/>
-<img align="left" alt="MySQL" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
-<img align="left" alt="Sass" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg"/>
-<img align="left" alt="TypeScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"/>
-<img align="left" alt="JavaScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
-<img align="left" alt="Python" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
-
-<br />
-<br />
+  <a href="mailto:anasoares2767@gmail.com">
+    <img src="https://img.shields.io/badge/gmail-1f1d2e?style=for-the-badge&logo=gmail&logoColor=ebbcba"/>
+  </a>
+</p>
 
 ---
 
-### Estatísticas
+### Stack
 
 <div align="center">
 
-<img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=devAnnalu&theme=rose_pine" />
-
-<img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=devAnnalu&theme=rose_pine" />
+<img src="https://skillicons.dev/icons?i=java,spring,postgres,mysql,docker,git,github,maven,aws&theme=dark" />
 
 </div>
+
+---
+
+### Explorando atualmente
+
+```txt
+→ Arquitetura de Software
+→ Clean Architecture
+→ APIs REST
+→ AWS
+→ Testes automatizados com JUnit
+```
+---
+### Estatísticas
+<div align="center"> <img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=devAnnalu&theme=rose_pine" /> <img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=devAnnalu&theme=rose_pine" /> </div> ```
+
