@@ -2,7 +2,7 @@
 
 **`Backend Software Engineer`**
 
-Tenho interesse em desenvolvimento backend e gosto de transformar ideias em soluções funcionais utilizando Java e Spring Boot, evoluindo constantemente em APIs REST, arquitetura de software e boas práticas de desenvolvimento.
+Backend developer em evolução, criando soluções com Java e Spring Boot enquanto aprofundo conhecimentos em APIs REST, arquitetura de software e boas práticas de desenvolvimento.
 
 ---
 
@@ -31,14 +31,10 @@ Tenho interesse em desenvolvimento backend e gosto de transformar ideias em solu
 
 ### Estatísticas
 
-<p align="center">
-  <img
-    height="170em"
-    src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=devAnnalu&theme=rose_pine"
-  />
+<div align="center">
 
-  <img
-    height="170em"
-    src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=devAnnalu&theme=rose_pine"
-  />
-</p>
+<img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=devAnnalu&theme=rose_pine" />
+
+<img height="170em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=devAnnalu&theme=rose_pine" />
+
+</div>
