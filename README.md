@@ -1,4 +1,4 @@
-<h1 align="center">Anna Luiza</h1>
+<h1 align="center">Anna Luiza Cerqueira </h1>
 
 <p align="center">
   <strong>Backend Software Engineer</strong>
