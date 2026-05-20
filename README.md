@@ -30,14 +30,15 @@ Tenho interesse em desenvolvimento backend e gosto de transformar ideias em solu
 ---
 
 ### Estatísticas
+
 <p align="center">
   <img
-    height="165em"
-    src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=devAnnalu&show_icons=true&theme=rose_pine&hide_border=true"
+    height="170em"
+    src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=devAnnalu&theme=rose_pine"
   />
 
   <img
-    height="165em"
-    src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=devAnnalu&layout=compact&theme=rose_pine&hide_border=true"
+    height="170em"
+    src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=devAnnalu&theme=rose_pine"
   />
 </p>
