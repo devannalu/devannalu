@@ -1,5 +1,5 @@
-// Constelação de contribuições: cada dia com contribuição vira uma estrela ASCII que acende em sequência,
-// ligada às vizinhas no tempo. Gera as versões escura e clara em SVG animado (só CSS, sem scripts).
+// Constelação de contribuições: cada dia com contribuição vira uma estrela ASCII de quatro pontas que acende
+// em sequência, ligada às vizinhas. Gera as versões escura e clara em SVG animado (só CSS, sem scripts).
 // Uso: GITHUB_TOKEN=... node constelacao.js <usuario> <pasta-de-saida> [dados.json]
 const fs = require("fs");
 
@@ -21,41 +21,56 @@ async function loadDays() {
 }
 
 const THEMES = {
-  dark: { bg: "#0a0a0a", fg: "#f2f2f2", muted: "#a1a1a1", faint: "#6b6b6b", line: "#3a3a3a", accent: "#c41e3a", border: "#262626" },
-  light: { bg: "#ffffff", fg: "#0a0a0a", muted: "#5c5c5c", faint: "#8f8f8f", line: "#cfcfcf", accent: "#5e0b1e", border: "#e5e5e5" },
+  dark: { bg: "#0a0a0a", fg: "#f2f2f2", faint: "#6b6b6b", line: "#4a4a4a", accent: "#c41e3a", border: "#262626" },
+  light: { bg: "#ffffff", fg: "#0a0a0a", faint: "#8f8f8f", line: "#c4c4c4", accent: "#5e0b1e", border: "#e5e5e5" },
 };
 const MONTHS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
-const W = 1280, H = 300, PAD = 56, TOP = 46, BOTTOM = 64;
+const W = 1280, H = 380, PAD = 56, TOP = 64, BOTTOM = 80;
+const CW = 6.6, CH = 10; // célula de caractere das estrelas (fonte de 10px)
 const CYCLE = 14; // segundos por ciclo completo
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const f = (n) => n.toFixed(1);
 
 // Posição estável por data: o mesmo dia cai sempre no mesmo lugar do céu.
 function hash(text) {
   let h = 2166136261;
-  for (const c of text) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  for (const ch of text) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
   return ((h >>> 0) % 10000) / 10000;
 }
 
-function render(days, c) {
-  const firstActive = days.findIndex((d) => d.contributionCount > 0);
-  const span = firstActive < 0 ? [] : days.slice(Math.max(0, firstActive - 7));
-  const total = span.reduce((sum, d) => sum + d.contributionCount, 0);
-  const max = Math.max(1, ...span.map((d) => d.contributionCount));
+// Estrela de quatro pontas em ASCII (astroide), como as do README: densidade cai do centro às pontas.
+function sparkle(cx, cy, r) {
+  const ramp = " .:-=+*%8@";
+  const cells = [];
+  const rx = Math.ceil(r / CW), ry = Math.ceil(r / CH);
+  for (let j = -ry; j <= ry; j++) {
+    for (let i = -rx; i <= rx; i++) {
+      const v = 1 - (Math.sqrt(Math.abs(i * CW) / r) + Math.sqrt(Math.abs(j * CH) / r));
+      if (v <= 0.03) continue;
+      const d = Math.min(1, v * 2.4);
+      cells.push({ x: cx + i * CW, y: cy + j * CH, ch: ramp[Math.max(1, Math.round(d * (ramp.length - 1)))], d });
+    }
+  }
+  return cells;
+}
+
+function placeStars(span, max) {
   const step = (W - PAD * 2) / Math.max(1, span.length - 1);
   const rows = H - TOP - BOTTOM;
-
   const stars = [];
   span.forEach((d, i) => {
     if (!d.contributionCount) return;
     const weekday = new Date(`${d.date}T12:00:00Z`).getUTCDay();
     const x = PAD + i * step;
     const y = TOP + ((weekday + 0.5) / 7) * rows + (hash(d.date) - 0.5) * (rows / 7) * 0.9;
-    stars.push({ x, y, level: d.contributionCount / max, count: d.contributionCount, date: d.date });
+    stars.push({ i: stars.length, x, y, level: d.contributionCount / max, date: d.date });
   });
+  return { stars, step };
+}
 
-  // Constelações: dias próximos no tempo formam um grupo; dentro dele, cada estrela se liga à vizinha
-  // mais próxima no céu (árvore geradora mínima), o que dá desenhos de constelação, não um gráfico.
-  stars.forEach((s, i) => (s.i = i));
+// Dias próximos no tempo formam uma constelação; dentro dela, cada estrela se liga à vizinha mais próxima
+// no céu (árvore geradora mínima), o que dá desenhos de constelação em vez de um gráfico.
+function linkGroups(stars) {
   const groups = [];
   for (const s of stars) {
     const last = groups.at(-1)?.at(-1);
@@ -68,73 +83,99 @@ function render(days, c) {
     const rest = group.slice(1);
     while (rest.length) {
       let best = null;
-      for (const a of linked) for (const b of rest) {
-        const d = Math.hypot(b.x - a.x, b.y - a.y);
-        if (!best || d < best.d) best = { a, b, d };
+      for (const a of linked) {
+        for (const b of rest) {
+          const d = Math.hypot(b.x - a.x, b.y - a.y);
+          if (!best || d < best.d) best = { a, b, d };
+        }
       }
       lines.push({ a: best.a, b: best.b, i: Math.max(best.a.i, best.b.i) });
       linked.push(best.b);
       rest.splice(rest.indexOf(best.b), 1);
     }
   }
+  return { groups, lines };
+}
 
+function render(days, c) {
+  const firstActive = days.findIndex((d) => d.contributionCount > 0);
+  const span = firstActive < 0 ? [] : days.slice(Math.max(0, firstActive - 7));
+  const total = span.reduce((sum, d) => sum + d.contributionCount, 0);
+  const max = Math.max(1, ...span.map((d) => d.contributionCount));
+  const { stars, step } = placeStars(span, max);
+  const { groups, lines } = linkGroups(stars);
   const delayOf = (i) => ((i / Math.max(1, stars.length)) * CYCLE * 0.55).toFixed(2);
-  const glyph = (lvl) => (lvl > 0.75 ? "@" : lvl > 0.45 ? "%" : lvl > 0.2 ? "*" : "+");
 
   let body = "";
   for (const { a, b, i } of lines) {
-    const len = Math.hypot(b.x - a.x, b.y - a.y).toFixed(1);
-    body += `<line class="l" x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke-dasharray="${len}" stroke-dashoffset="${len}" style="--len:${len};animation-delay:${delayOf(i)}s"/>`;
+    const len = f(Math.hypot(b.x - a.x, b.y - a.y));
+    body += `<line class="l" x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}" stroke-dasharray="${len}" stroke-dashoffset="${len}" style="--len:${len};animation-delay:${delayOf(i)}s"/>`;
   }
-  stars.forEach((s, i) => {
-    const strong = s.level > 0.75;
-    const bright = s.level > 0.35;
-    const size = (14 + s.level * 12).toFixed(1);
-    const reach = (bright ? 15 + s.level * 8 : 0).toFixed(1);
-    // Estrelas fortes ganham raios em ASCII, como as do portfólio.
-    const rays = bright
-      ? `<text x="${(s.x - reach).toFixed(1)}" y="${s.y.toFixed(1)}" class="r">-</text><text x="${(s.x + +reach).toFixed(1)}" y="${s.y.toFixed(1)}" class="r">-</text>` +
-        `<text x="${s.x.toFixed(1)}" y="${(s.y - reach).toFixed(1)}" class="r">:</text><text x="${s.x.toFixed(1)}" y="${(s.y + +reach).toFixed(1)}" class="r">:</text>`
-      : "";
-    const twinkle = (2 + hash(s.date + "t") * 2.5).toFixed(2);
-    body += `<g class="s" style="animation-delay:${delayOf(i)}s"><g class="t" style="animation-duration:${twinkle}s;animation-delay:-${(hash(s.date + "d") * 3).toFixed(2)}s">${rays}<text x="${s.x.toFixed(1)}" y="${s.y.toFixed(1)}" fill="${strong ? c.accent : c.fg}" fill-opacity="${(0.55 + s.level * 0.45).toFixed(2)}" style="font-size:${size}px">${glyph(s.level)}</text></g></g>`;
-  });
 
-  // Poeira de fundo, fixa, para o céu não ficar vazio.
+  for (const s of stars) {
+    const strong = s.level > 0.75;
+    let chars = "";
+    for (const cell of sparkle(s.x, s.y, 8 + Math.sqrt(s.level) * 26)) {
+      const fill = strong && cell.d > 0.55 ? c.accent : c.fg;
+      chars += `<text x="${f(cell.x)}" y="${f(cell.y)}" fill="${fill}" fill-opacity="${(0.25 + cell.d * 0.75).toFixed(2)}">${esc(cell.ch)}</text>`;
+    }
+    const twinkle = (2.2 + hash(s.date + "t") * 2.6).toFixed(2);
+    const phase = (hash(s.date + "d") * 3).toFixed(2);
+    body += `<g class="s" style="animation-delay:${delayOf(s.i)}s"><g class="t" style="animation-duration:${twinkle}s;animation-delay:-${phase}s">${chars}</g></g>`;
+  }
+
+  // Nome discreto de cada constelação com 3 estrelas ou mais: mês e quantos dias.
+  for (const group of groups) {
+    if (group.length < 3) continue;
+    const top = group.reduce((a, b) => (b.y < a.y ? b : a));
+    const [first, last] = [group[0], group.at(-1)].map((s) => MONTHS[Number(s.date.slice(5, 7)) - 1]);
+    const months = first === last ? first : `${first}–${last}`;
+    body += `<text class="n s" x="${f(top.x)}" y="${f(Math.max(16, top.y - 36))}" style="animation-delay:${delayOf(group.at(-1).i)}s">${months} · ${group.length} dias</text>`;
+  }
+
+  // Poeira de fundo para o céu não ficar vazio.
   let dust = "";
-  for (let i = 0; i < 60; i++) {
-    const x = (PAD / 2 + hash(`x${i}`) * (W - PAD)).toFixed(0), y = (TOP / 2 + hash(`y${i}`) * (H - BOTTOM - TOP / 2)).toFixed(0);
+  for (let i = 0; i < 90; i++) {
+    const x = (PAD / 2 + hash(`x${i}`) * (W - PAD)).toFixed(0);
+    const y = (12 + hash(`y${i}`) * (H - BOTTOM - 12)).toFixed(0);
     dust += `<text class="d" x="${x}" y="${y}" style="animation-delay:-${(hash(`d${i}`) * 4).toFixed(2)}s">.</text>`;
   }
 
-  // Meses no rodapé, na posição do primeiro dia de cada um.
+  // Estrela cadente: cruza o céu uma vez por ciclo.
+  const meteor = `<g class="meteor"><line x1="0" y1="0" x2="-90" y2="-34" stroke="url(#trail)" stroke-width="1.4"/><text x="2" y="1" fill="${c.fg}">*</text></g>`;
+
   let months = "";
   span.forEach((d, i) => {
-    if (d.date.endsWith("-01")) months += `<text class="m" x="${(PAD + i * step).toFixed(1)}" y="${H - 38}">${MONTHS[Number(d.date.slice(5, 7)) - 1]}</text>`;
+    if (d.date.endsWith("-01")) months += `<text class="m" x="${f(PAD + i * step)}" y="${H - 42}">${MONTHS[Number(d.date.slice(5, 7)) - 1]}</text>`;
   });
 
+  const label = "object (6) constelação";
   const empty = stars.length ? "" : `<text class="m" x="${W / 2}" y="${H / 2}">o céu ainda está se formando</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Constelação de contribuições: ${total} contribuições">
 <style>
-  text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; text-anchor: middle; dominant-baseline: middle; }
+  text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; text-anchor: middle; dominant-baseline: middle; }
   .l { stroke: ${c.line}; stroke-width: 1; animation: draw ${CYCLE}s ease-out infinite; }
   .s { opacity: 0; animation: appear ${CYCLE}s ease-out infinite; }
   .t { transform-box: fill-box; transform-origin: center; animation: twinkle 3s ease-in-out infinite; }
-  .r { fill: ${c.faint}; font-size: 10px; }
-  .d { fill: ${c.faint}; animation: blink 4s ease-in-out infinite; }
+  .n { fill: ${c.faint}; letter-spacing: 0.04em; }
+  .d { fill: ${c.faint}; font-size: 12px; animation: blink 4s ease-in-out infinite; }
   .m { fill: ${c.faint}; font-size: 11px; }
   .lbl { text-anchor: start; font-size: 12px; }
+  .meteor { opacity: 0; animation: meteor ${CYCLE}s linear infinite; animation-delay: ${(CYCLE * 0.62).toFixed(1)}s; }
+  .meteor text { font-size: 14px; }
   @keyframes appear { 0% { opacity: 0 } 6%, 82% { opacity: 1 } 92%, 100% { opacity: 0 } }
   @keyframes draw { 0% { stroke-dashoffset: var(--len); opacity: 1 } 10% { stroke-dashoffset: 0 } 82% { stroke-dashoffset: 0; opacity: 1 } 92%, 100% { stroke-dashoffset: 0; opacity: 0 } }
-  @keyframes twinkle { 0%, 100% { transform: scale(1) } 50% { transform: scale(0.78); opacity: 0.6 } }
+  @keyframes twinkle { 0%, 100% { transform: scale(1) } 50% { transform: scale(0.8); opacity: 0.65 } }
   @keyframes blink { 0%, 100% { opacity: 0.8 } 50% { opacity: 0.15 } }
-  @media (prefers-reduced-motion: reduce) { .s, .l, .t, .d { animation: none; opacity: 1; stroke-dashoffset: 0 } }
+  @keyframes meteor { 0% { opacity: 0; transform: translate(${W * 0.5}px, 20px) } 1% { opacity: 1 } 7% { opacity: 1; transform: translate(${W * 0.8}px, 140px) } 8%, 100% { opacity: 0; transform: translate(${W * 0.8}px, 140px) } }
+  @media (prefers-reduced-motion: reduce) { .s, .l, .t, .d { animation: none; opacity: 1; stroke-dashoffset: 0 } .meteor { display: none } }
 </style>
+<defs><linearGradient id="trail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.fg}" stop-opacity="0.9"/><stop offset="1" stop-color="${c.fg}" stop-opacity="0"/></linearGradient></defs>
 <rect width="${W}" height="${H}" fill="${c.bg}"/>
-<line x1="${PAD}" y1="${H - 54}" x2="${W - PAD}" y2="${H - 54}" stroke="${c.border}"/>
-${dust}${body}${months}${empty}
-<text class="lbl" x="${PAD}" y="${H - 18}" fill="${c.accent}">object (6) constelação</text>
-<text class="lbl" x="${PAD + 170}" y="${H - 18}" fill="${c.faint}">· ${total} contribuições · uma estrela por dia</text>
+<line x1="${PAD}" y1="${H - 58}" x2="${W - PAD}" y2="${H - 58}" stroke="${c.border}"/>
+${dust}${body}${meteor}${months}${empty}
+<text class="lbl" x="${PAD}" y="${H - 20}" fill="${c.accent}">${label}</text>
+<text class="lbl" x="${f(PAD + label.length * 7.4 + 10)}" y="${H - 20}" fill="${c.faint}">· ${total} contribuições · uma estrela por dia</text>
 </svg>`;
 }
 
