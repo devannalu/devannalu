@@ -28,22 +28,23 @@ jobs:
         run: |
           node -e '
             const fs = require("fs");
+            // A saída do snk pertence ao root do container; a versão recortada vai para outra pasta.
+            fs.mkdirSync("pub", { recursive: true });
             for (const file of fs.readdirSync("dist")) {
-              const path = "dist/" + file;
-              const svg = fs.readFileSync(path, "utf8").replace(
+              const svg = fs.readFileSync("dist/" + file, "utf8").replace(
                 /viewBox="(-?[\d.]+) (-?[\d.]+) ([\d.]+) ([\d.]+)" width="[\d.]+" height="[\d.]+"/,
                 (_, x, y, w, h) => {
                   const width = +w + 2 * +x + 4, height = +h + +y + 2;
                   return `viewBox="-2 -2 ${width} ${height}" width="${width}" height="${height}"`;
                 },
               );
-              fs.writeFileSync(path, svg);
+              fs.writeFileSync("pub/" + file, svg);
             }
           '
 
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: pub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
