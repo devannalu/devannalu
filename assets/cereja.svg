@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Cereja cyber tribal: cabinhos e ornamentos em lâminas cromadas com espinhos, como a capa do CD. -->
+  <defs>
+    <linearGradient id="fruit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff4d6d"/>
+      <stop offset="0.5" stop-color="#c41e3a"/>
+      <stop offset="1" stop-color="#5e0b1e"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.42" stop-color="#b5b5b5"/>
+      <stop offset="0.52" stop-color="#3a3a3a"/>
+      <stop offset="0.66" stop-color="#f2f2f2"/>
+      <stop offset="1" stop-color="#8a8a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+  <g fill="url(#chrome)">
+    <!-- Ornamentos laterais: arcos afiados que abraçam as frutas. -->
+    <path d="M12 24C5 34 6 47 16 57C12 49 11 42 13 35L7 36L14 31C14 28 13 26 12 24Z"/>
+    <path d="M52 24C59 34 58 47 48 57C52 49 53 42 51 35L57 36L50 31C50 28 51 26 52 24Z"/>
+    <!-- Cabinhos em lâmina, cada um com um espinho. -->
+    <path d="M33 9C27 17 22.5 26 20.5 36L23.5 36C25 27 29 19 34.5 10.5Z"/>
+    <path d="M27 21.5L20 18L28.6 24.4Z"/>
+    <path d="M33 9C39 17 42.5 26 43.5 36L40.5 36C40 27 36.5 19 31.5 10.5Z"/>
+    <path d="M38.6 21.5L45.5 17.5L37.4 24.4Z"/>
+    <!-- Folha tribal com entalhe. -->
+    <path d="M33 9C38 3 47 2.5 54 6C47 7 43 9 40 12.5L46 13.5C41 15.5 36.5 13 33 9Z"/>
+    <!-- Espinho central sob as frutas. -->
+    <path d="M32 50L29.5 60L32 57L34.5 60Z"/>
+  </g>
+  <circle cx="21" cy="44" r="9.5" fill="url(#fruit)"/>
+  <circle cx="43" cy="44" r="9.5" fill="url(#fruit)"/>
+  <!-- Brilho em lâmina sobre cada fruta. -->
+  <g fill="#ffffff">
+    <path d="M14.5 42C15.5 37.5 19.5 35 24.5 36C20.5 37.2 18 39.5 16.8 44Z"/>
+    <path d="M36.5 42C37.5 37.5 41.5 35 46.5 36C42.5 37.2 40 39.5 38.8 44Z"/>
+  </g>
+</svg>
