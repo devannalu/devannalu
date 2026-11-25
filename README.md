@@ -14,8 +14,8 @@
 
 <a href="https://portfolio.devannalu.com">
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="assets/readme-light.svg" />
-    <img src="assets/readme-dark.svg" alt="Oi, eu sou a Anna Luiza, a annalu. Sou desenvolvedora backend Jr e gosto de começar pelo problema: entender a rotina de quem vai usar, ver onde o trabalho se perde e só então decidir o que construir. Também sou fundadora da Tech Sisters, uma comunidade de mulheres na tecnologia. Stack: Java, Spring, TypeScript, JavaScript, Python, PHP, MySQL, PostgreSQL, NestJS, Next.js, Prisma, Docker, Git, HTML e CSS." width="100%" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/perfil-light.svg" />
+    <img src="assets/perfil-dark.svg" alt="Oi, eu sou a Anna Luiza, a annalu. Sou desenvolvedora backend Jr e gosto de começar pelo problema: entender a rotina de quem vai usar, ver onde o trabalho se perde e só então decidir o que construir. Também sou fundadora da Tech Sisters, uma comunidade de mulheres na tecnologia. Stack: Java, Spring, TypeScript, JavaScript, Python, PHP, MySQL, PostgreSQL, NestJS, Next.js, Prisma, Docker, Git, HTML e CSS." width="100%" />
   </picture>
 </a>
 
