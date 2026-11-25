@@ -6,10 +6,10 @@
 </a>
 
 <p>
-  <a href="https://portfolio.devannalu.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/selo-portfolio-light.png" /><img src="assets/selo-portfolio-dark.png" alt="Portfólio: portfolio.devannalu.com" height="33" /></picture></a>
-  <a href="https://www.linkedin.com/in/devannalu"><picture><source media="(prefers-color-scheme: light)" srcset="assets/selo-linkedin-light.png" /><img src="assets/selo-linkedin-dark.png" alt="LinkedIn: in/devannalu" height="33" /></picture></a>
-  <a href="https://www.instagram.com/dev.annalu/"><picture><source media="(prefers-color-scheme: light)" srcset="assets/selo-instagram-light.png" /><img src="assets/selo-instagram-dark.png" alt="Instagram: @dev.annalu" height="33" /></picture></a>
-  <a href="mailto:devannalu0@gmail.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/selo-email-light.png" /><img src="assets/selo-email-dark.png" alt="E-mail: devannalu0@gmail.com" height="33" /></picture></a>
+  <a href="https://portfolio.devannalu.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/botao-portfolio-light.png" /><img src="assets/botao-portfolio-dark.png" alt="Portfólio" height="30" /></picture></a>
+  <a href="https://www.linkedin.com/in/devannalu"><picture><source media="(prefers-color-scheme: light)" srcset="assets/botao-linkedin-light.png" /><img src="assets/botao-linkedin-dark.png" alt="LinkedIn" height="30" /></picture></a>
+  <a href="https://www.instagram.com/dev.annalu/"><picture><source media="(prefers-color-scheme: light)" srcset="assets/botao-instagram-light.png" /><img src="assets/botao-instagram-dark.png" alt="Instagram" height="30" /></picture></a>
+  <a href="mailto:devannalu0@gmail.com"><picture><source media="(prefers-color-scheme: light)" srcset="assets/botao-email-light.png" /><img src="assets/botao-email-dark.png" alt="E-mail" height="30" /></picture></a>
 </p>
 
 <a href="https://portfolio.devannalu.com">
@@ -21,5 +21,5 @@
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-light.svg" />
-  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" width="100%" />
+  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" />
 </picture>

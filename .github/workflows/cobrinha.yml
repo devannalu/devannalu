@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v4
+
       - uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
@@ -23,24 +25,9 @@ jobs:
             dist/cobrinha-dark.svg?palette=github-dark&color_snake=#c41e3a&color_dots=#161b22,#3b0a14,#5e0b1e,#8c1530,#c41e3a
             dist/cobrinha-light.svg?color_snake=#5e0b1e&color_dots=#ebedf0,#f2c4cc,#d9798a,#a8324a,#5e0b1e
 
-      # Recorta a margem em volta do gráfico: a cobrinha entra e sai pela borda, sem andar por fora do quadro.
-      - name: recortar margem
-        run: |
-          node -e '
-            const fs = require("fs");
-            // A saída do snk pertence ao root do container; a versão recortada vai para outra pasta.
-            fs.mkdirSync("pub", { recursive: true });
-            for (const file of fs.readdirSync("dist")) {
-              const svg = fs.readFileSync("dist/" + file, "utf8").replace(
-                /viewBox="(-?[\d.]+) (-?[\d.]+) ([\d.]+) ([\d.]+)" width="[\d.]+" height="[\d.]+"/,
-                (_, x, y, w, h) => {
-                  const width = +w + 2 * +x + 4, height = +h + +y + 2;
-                  return `viewBox="-2 -2 ${width} ${height}" width="${width}" height="${height}"`;
-                },
-              );
-              fs.writeFileSync("pub/" + file, svg);
-            }
-          '
+      # Só a partir da primeira contribuição e sem a margem por onde a cobrinha sairia do quadro.
+      - name: recortar
+        run: node .github/cobrinha-recorte.js dist pub
 
       - uses: crazy-max/ghaction-github-pages@v4
         with:
