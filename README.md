@@ -18,20 +18,12 @@ Oi, eu sou a **Anna Luiza**, a annalu. Sou desenvolvedora backend em Salvador e 
 
 Também sou fundadora da **Tech Sisters**, uma comunidade de mulheres na tecnologia, e já fui professora de robótica e programação para crianças.
 
-<sub>`object (2) projetos`</sub>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/estrelas-light.svg" />
+  <img src="assets/estrelas-dark.svg" alt="Estrelas em ASCII piscando" width="100%" />
+</picture>
 
-### O que eu ando construindo
-
-| projeto | o que resolve |
-|---|---|
-| **Hub de Avaliação** | Levou para o digital a admissão de novos pacientes, que era toda feita no papel e na caneta, com os documentos gerados pelo próprio sistema. |
-| **CRM personalizado** | Um CRM do jeito que a empresa trabalha, integrado ao Hub, com a avaliação do paciente nas mesmas telas. |
-| **TI Control** | Cada equipamento rastreado da compra ao descarte, integrado ao Tactical RMM e com limpeza de disco automática. |
-| **TS Workspace** | A central de operação da Tech Sisters: tarefas, projetos, eventos e comunicação num só lugar. |
-| **Sisters Play** | Roleta de prêmios para eventos, com sorteio decidido no servidor e consentimento LGPD. |
-| **Annalu Studio** | Meu centro de comando pessoal, com um pet que come o que eu entrego. |
-
-São sistemas privados, então não tem link para produção. As prévias, com prints de dados fictícios, estão no **[portfólio →](https://portfolio.devannalu.com/#projetos)**
+Meus projetos são privados, então as prévias, com prints de dados fictícios, ficam no **[portfólio →](https://portfolio.devannalu.com/#projetos)**
 
 <sub>`object (3) stack`</sub>
 
@@ -49,6 +41,11 @@ São sistemas privados, então não tem link para produção. As prévias, com p
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=devannalu&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&icon_color=c41e3a&text_color=a1a1a1&hide_rank=true&disable_animations=true" alt="Estatísticas do GitHub" />
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=devannalu&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&text_color=a1a1a1&disable_animations=true" alt="Linguagens mais usadas" />
 </p>
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-light.svg" />
+  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" width="100%" />
+</picture>
 
 <br />
 
