@@ -12,34 +12,35 @@
   <a href="mailto:devannalu0@gmail.com"><img src="https://img.shields.io/badge/e--mail-0a0a0a?style=for-the-badge&logo=gmail&logoColor=c41e3a" alt="E-mail" /></a>
 </p>
 
-<br />
-
-Oi, eu sou a **Anna Luiza**, a annalu. Sou desenvolvedora backend em Salvador e atuo com desenvolvimento de software e automações. Gosto de começar pelo problema: entender a rotina de quem vai usar, ver onde o trabalho se perde e só então decidir o que construir.
-
-Também sou fundadora da **Tech Sisters**, uma comunidade de mulheres na tecnologia, e já fui professora de robótica e programação para crianças.
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/sobre-light.png" />
+  <img src="assets/sobre-dark.png" alt="Oi, eu sou a Anna Luiza, a annalu. Sou desenvolvedora backend Jr e gosto de começar pelo problema: entender a rotina de quem vai usar, ver onde o trabalho se perde e só então decidir o que construir. Também sou fundadora da Tech Sisters, uma comunidade de mulheres na tecnologia." width="100%" />
+</picture>
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="assets/estrelas-light.svg" />
   <img src="assets/estrelas-dark.svg" alt="Estrelas em ASCII piscando" width="100%" />
 </picture>
 
-Meus projetos são privados, então as prévias, com prints de dados fictícios, ficam no **[portfólio →](https://portfolio.devannalu.com/#projetos)**
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.png" />
+  <img src="assets/stack-dark.png" alt="Com o que eu trabalho: Java, Spring, TypeScript, JavaScript, Python, PHP, MySQL, PostgreSQL, NestJS, Next.js, Prisma, Docker, Git, HTML e CSS" width="100%" />
+</picture>
 
-<sub>`object (3) stack`</sub>
-
-### Com o que eu trabalho
-
-<p>
-  <img src="https://skillicons.dev/icons?i=java,spring,ts,js,python,php,mysql,postgres,nestjs,nextjs,prisma,docker,git,html,css&theme=dark" alt="Java, Spring, TypeScript, JavaScript, Python, PHP, MySQL, PostgreSQL, NestJS, Next.js, Prisma, Docker, Git, HTML e CSS" />
-</p>
-
-<sub>`object (4) github`</sub>
-
-### Por aqui
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/github-light.png" />
+  <img src="assets/github-dark.png" alt="Por aqui: commits, linguagens e contribuições" width="100%" />
+</picture>
 
 <p>
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=devannalu&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&icon_color=c41e3a&text_color=a1a1a1&hide_rank=true&disable_animations=true" alt="Estatísticas do GitHub" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=devannalu&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&text_color=a1a1a1&disable_animations=true" alt="Linguagens mais usadas" />
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=devannalu&show_icons=true&hide_border=true&bg_color=ffffff&title_color=5e0b1e&icon_color=5e0b1e&text_color=5c5c5c&hide_rank=true&disable_animations=true" />
+    <img height="165" src="https://github-readme-stats.vercel.app/api?username=devannalu&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&icon_color=c41e3a&text_color=a1a1a1&hide_rank=true&disable_animations=true" alt="Estatísticas do GitHub" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=devannalu&layout=compact&hide_border=true&bg_color=ffffff&title_color=5e0b1e&text_color=5c5c5c&disable_animations=true" />
+    <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=devannalu&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=c41e3a&text_color=a1a1a1&disable_animations=true" alt="Linguagens mais usadas" />
+  </picture>
 </p>
 
 <picture>
@@ -47,9 +48,7 @@ Meus projetos são privados, então as prévias, com prints de dados fictícios,
   <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" width="100%" />
 </picture>
 
-<br />
-
-<p align="center">
-  <img src="assets/cereja.svg" alt="" width="36" /><br />
-  <sub><code>code with &lt;3 · salvador, bahia</code></sub>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="assets/rodape-light.png" />
+  <img src="assets/rodape-dark.png" alt="code with <3 · salvador, bahia" width="100%" />
+</picture>
