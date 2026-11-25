@@ -20,6 +20,6 @@
 </a>
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-light.svg" />
-  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" width="100%" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/devannalu/devannalu/output/constelacao-light.svg" />
+  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/constelacao-dark.svg" alt="Constelação de contribuições: uma estrela por dia com contribuição" width="100%" />
 </picture>

@@ -1,0 +1,35 @@
+# Gera a constelação de contribuições (uma estrela por dia) nas cores do portfólio.
+name: constelacao
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: desenhar
+        run: node .github/constelacao.js ${{ github.repository_owner }} pub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: pub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
