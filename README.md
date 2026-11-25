@@ -1,7 +1,7 @@
 <a href="https://portfolio.devannalu.com">
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png" />
-    <img src="assets/banner-dark.png" alt="devAnnalu: desenvolvedora backend, automações, fundadora da Tech Sisters" width="100%" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/topo-light.png" />
+    <img src="assets/topo-dark.png" alt="devAnnalu: desenvolvedora backend, automações, fundadora da Tech Sisters" width="100%" />
   </picture>
 </a>
 
@@ -21,5 +21,5 @@
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-light.svg" />
-  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" />
+  <img src="https://raw.githubusercontent.com/devannalu/devannalu/output/cobrinha-dark.svg" alt="Cobrinha comendo os quadradinhos de contribuição do GitHub" width="100%" />
 </picture>
