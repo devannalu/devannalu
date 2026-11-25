@@ -23,6 +23,24 @@ jobs:
             dist/cobrinha-dark.svg?palette=github-dark&color_snake=#c41e3a&color_dots=#161b22,#3b0a14,#5e0b1e,#8c1530,#c41e3a
             dist/cobrinha-light.svg?color_snake=#5e0b1e&color_dots=#ebedf0,#f2c4cc,#d9798a,#a8324a,#5e0b1e
 
+      # Recorta a margem em volta do gráfico: a cobrinha entra e sai pela borda, sem andar por fora do quadro.
+      - name: recortar margem
+        run: |
+          node -e '
+            const fs = require("fs");
+            for (const file of fs.readdirSync("dist")) {
+              const path = "dist/" + file;
+              const svg = fs.readFileSync(path, "utf8").replace(
+                /viewBox="(-?[\d.]+) (-?[\d.]+) ([\d.]+) ([\d.]+)" width="[\d.]+" height="[\d.]+"/,
+                (_, x, y, w, h) => {
+                  const width = +w + 2 * +x + 4, height = +h + +y + 2;
+                  return `viewBox="-2 -2 ${width} ${height}" width="${width}" height="${height}"`;
+                },
+              );
+              fs.writeFileSync(path, svg);
+            }
+          '
+
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
